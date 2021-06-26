@@ -10,6 +10,7 @@ class HomeArticlesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = HomeArticlesCubit.get(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -27,6 +28,7 @@ class HomeArticlesScreen extends StatelessWidget {
                 conditionBuilder: (BuildContext context) =>
                     state is HomeArticlesSuccessState,
                 widgetBuilder: (BuildContext context) {
+                 
                   return SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     child: Column(
@@ -57,7 +59,10 @@ class HomeArticlesScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: InkWell(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>ArticleDetailsScreen(article)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleDetailsScreen(article)));
           },
           child: Container(
             decoration: BoxDecoration(
@@ -74,7 +79,7 @@ class HomeArticlesScreen extends StatelessWidget {
                         topRight: Radius.circular(25),
                         bottomLeft: Radius.circular(15)),
                     image: DecorationImage(
-                        image: NetworkImage(article.multimedia[0].url),
+                        image: NetworkImage(article.multimedia.length==0?'https://image.freepik.com/free-psd/rectangular-cardboard-box-mockup_58466-15677.jpg':article.multimedia[0].url),
                         fit: BoxFit.cover),
                   ),
                 ),

@@ -12,9 +12,12 @@ class ArticleDataModel {
     section = json['section'];
     lastUpdated = json['last_updated'];
     numResults = json['num_results'];
-    json['results'].forEach((element) {
-      results.add(Article.fromJson(element));
-    });
+    if (json['results'] != null) {
+      json['results'].forEach((element) {
+       
+        results.add(Article.fromJson(element));
+      });
+    }
   }
 }
 
@@ -57,9 +60,11 @@ class Article {
     perFacet = json['per_facet'];
     geoFacet = json['geo_facet'];
     shortUrl = json['short_url'];
-    json['multimedia'].forEach((element) {
-      multimedia.add(ArticleMultiMedia.fromJson(element));
-    });
+    if (json['multimedia'] != null) {
+      json['multimedia'].forEach((element ) {
+        multimedia.add(ArticleMultiMedia.fromJson(element));
+      });
+    }
   }
 }
 
@@ -73,6 +78,7 @@ class ArticleMultiMedia {
   String caption = '';
   String copyright = '';
   ArticleMultiMedia.fromJson(Map<String, dynamic> json) {
+  
     url = json['url'];
     format = json['format'];
     height = json['height'];

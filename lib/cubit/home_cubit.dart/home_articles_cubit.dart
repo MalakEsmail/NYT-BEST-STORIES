@@ -11,12 +11,14 @@ class HomeArticlesCubit extends Cubit<HomeArticlesStates> {
   void getHomeArticlesData() {
     emit(HomeArticlesLoadingState());
     DioHelper.getData(HOMEARTICLES).then((value) {
+     
       articleDataModel = ArticleDataModel.fromJson(value.data);
+     
       print(articleDataModel.numResults.toString());
       emit(HomeArticlesSuccessState());
     }).catchError((error) {
       print('error is $error');
-      emit(HomeArticlesErrorState(error.message.toString()));
+      emit(HomeArticlesErrorState(error.toString()));
     });
   }
 }
